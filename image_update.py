@@ -90,7 +90,7 @@ class CarImageDetector:
 
 def main():
     # 设置源目录和目标目录
-    source_dir = "old"  # 替换为你的源图片目录
+    source_dir = "landroverDefender"  # 替换为你的源图片目录
     target_dir = "new"  # 替换为你想要保存汽车图片的目录
 
     # 创建检测器实例并处理图片
