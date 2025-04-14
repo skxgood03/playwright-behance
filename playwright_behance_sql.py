@@ -138,9 +138,6 @@ def scrape_behance_projects(max_projects=100, scroll_delay=1.5, proxy=None, name
                 context_options["proxy"] = proxy
             # 设置cookies
             context = browser.new_context(**context_options)
-            # context.add_cookies(get_cookies(
-            #     "")
-            # )
             page = context.new_page()
 
             # 访问搜索页面
