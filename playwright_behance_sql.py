@@ -70,9 +70,10 @@ def inster_word(data):
     # 从字典中提取值
     portfolio_uid = data['portfolio_uid']
     image_url_list = data['image_url']
+    print(image_url_list)
     tags = data['tags']
     data_values = []
-    # try:
+
     insert_query = """
        INSERT  INTO `work` (`portfolio_uid`, `image_url`, `tags`) 
        VALUES (%s, %s, %s)
@@ -535,4 +536,4 @@ def main():
     print("任务完成!")
 
 
-main()
+# main()

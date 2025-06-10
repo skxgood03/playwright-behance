@@ -2,10 +2,10 @@
 import pymysql
 
 conn = pymysql.connect(
-    host='',
-    user='',
-    password='',
-    database="",
+    host='10.7.100.245',
+    user='root',
+    password='gempoll',
+    database="gempoll_tips",
     port=3306,
     charset='utf8mb4',
 )

@@ -228,7 +228,7 @@ def get_cookies(cookies: str):
 #             if browser:
 #                 browser.close()
 
-def scrape_behance_projects(max_projects=100, scroll_delay=1.5, proxy=None, name="old",cookies=None):
+def scrape_behance_projects(max_projects=100, scroll_delay=1.5, proxy=None, name="old"):
     with sync_playwright() as p:
         browser = None
         try:
@@ -239,9 +239,9 @@ def scrape_behance_projects(max_projects=100, scroll_delay=1.5, proxy=None, name
                 context_options["proxy"] = proxy
             # 设置cookies
             context = browser.new_context(**context_options)
-            if cookies:
-                context.add_cookies(get_cookies(
-                    cookies))
+            context.add_cookies(get_cookies(
+                'csrftoken=f0da77587c76532b19b4fee9ae4986b0; _auth=1; _pinterest_sess=TWc9PSYzcmJua0MrTWtka0ZXYm0xWDJ5VXdDZTgvN1JLV1NJREY4Q1dKNi94UFBIT3QrZkcxZTdWbVVJbkRVdlRHSnJzcWE3Ry9yYWVqQkt3QnRnaVZwQkNRS2hvc3I5cXpicUhiZGpycWVBRzREeEM4Vmdpc3JQbVltaFlLdGhCRUFjcXFhVDl1blZKS3ZRY3Znd2VJUGZmV25yMEhZUnpMd2dNcjVCWHpjdjV4dllZUnhPUExMUUE1djNJRGNnajhEQy9TbkQxVk41UVdIK0RvNUNQc3MxMTlySHB1WThZcHVlemNOekswei8xWFdSYTFCT2dIakNkOXhjSTNwOExXK1J1MU96VDhMaE1XMVdtNmg2NXd5ZWVOU0VXVHM2L2hTM2lJclFtcFBQdlJWQUNlNWpmNEZ2OUlKQlhOYkl4WmpkRmtmQmo5K1NFNFFLdmo5bnc1OCtWWnJZQXNCbTh0MXFRWTBOYlhXdjhqMzdISEtFMmNXOG1ZVVU5UzR0TlFocUpUUDk0NUZCelcvOTVvZzlOUEV6UXFnWEtOWFhZM0tLRjduL2ovWTJDZWFMQytML25pVWJkZ1BwK0RUMWh1Y3FrUHZPZ1YwUk95MHpPYWhkRTd6RVpZTGgraGhaQjh2N1h3Z1g0ZEJrei80ZWJ3UFNnQVpkM0lxVWNzeDc3bkZ2MDZEbEdnb2F4a0JkTEFhTzhhLy9Pb2RnU0JtbGc1TWUwb3Nmb2VZY0F6Tnkzc1RVQlFRd3lHcEhUZjZscnRlMnNKR0NoWHVXMVRHUXV3R2hMa2hSQ0Npb1FMZmpSdGc3blVMVTlKR2R0eVJmUEc0ZkdObTB5cS9FcDRrZkZXdUxpSHV5NWxUNll2QjFtREFsTU0wS2R6U09kN2d6aCthb0lZNDFKZzJKaTZ2QjlRR1RWbXk0SjFiWWdVeENWNVlSejNnT0dXbzdWb2FPT20wYnRVZXN2cUxHMFdua25IOFRrYTV4OWFUZjdmY0lCeUpRK0I2eGFJWlowdmZaWGU3UUhDRk95THl5RndrVDFUYWxmR25uWjJYclNuUHV2cU5OVFVaaHlBMTZ5VVI1M2Qva3U5MVBBL1JkOFIyNkhsTGFjOXY0emJQU1RiV1RBWlVsT2I3UVZBRDRzY3IrSVV2T3F6SmF4ZHdaMmFsS0JyUmRGSTA4enFJa1JkSmo1RkQ3Nm5CcWlUNzhQVFBOYUhwL3p1V2wrclFZd1JyVTJFT3M4Y2dkZmVkamJBRExBYVJsMFNuZW1qSWltSWZqZnpTcm5TRUxFWDdtQmZ1QitiNlZiS0NMM1FWR0J4TlQwZ2lxczFBRm91bG0rQjc3R0hjOSs3WXlsMElHTjcyMUtWbytxQUNUR3VPNDRNQkR0VXBxemZ2YjU2VVNTeHFLUjk4R2FWUU9kRUNiQUlHVytNVWpGSDMyZnpLb0IzTyt4VmJDamt4cWg4aEpMclNjUWNXZHdiRkFXTElIUFAxRU5jSU1IUWF1N1pRRTZFTWdTUGg0V0ZLTWxxVzViYS9BS0QzZDJxSlJyUjR6TFJrUy9jTW8yN3NRLytlUnlVSTVkc1NJUUY1cTREeEthaHZocDZzVEpuM1MxaG1kN0cvakU2YWF6UFltRXNXRnhJc09teXlseVdLSDZCajErd2N1cWlEcCs5MS80Mi9rdTgzNGtGZTRWcWVqQk5xUnNqYWhKZS9wdHBLMUFyUFh3Z3lJZjRnSDlSQ1RMTXVXWERmcUNEU2licGxzelBhaHJOTUc1YVlsaXgvc2lkSUR5dEZuYVQ3Y3EmdXFHS1c2cFBLcUlucjA0WkV1V3l2YUM0UTY4PQ==; __Secure-s_a=UEpPdElXZlErMUpMbUlFRHVncnM0NHhJc3NtRjcvL2RlVzRsM01YWE9Gam5sSzJ1cGE2SXJZd3JQQ3ZxeTJ1WjVCZlB1cXdHTEIrZ01FTy96RWtNdnAwRXZWNjlnYis3WHA5cnMzU3ZVWVFzMThPS3NITkV1M0hSbStzc3oxeVQ4Zng4NmgvNWhZbmkzNHc2YWJWSWlMbjNwZ2JCcUE2OTNNSi9hYWEwR1EyNnNTU1l5QU9kTnhqc1BPaVhoTEZnYm1WM2F5TXVXbERCY2R0TWwvOFlHd1ZqaWpZejUxRElvcDN5RzE2ejVUMVBUR2NvM0NQbEthS0hWNGlkSVpjZVpxZ1pwRDZBWjl1NHV2SW9xYjUzdnBJZHErQzdGV1htdEVHV04vd3pnQk9ON05xZkVPSXBoWEh1T2M4V0V3c05lZ1hVVUx3WHJxQ1dzalFGSlNRNU1HT012bk1QU1UyeC8rOFJTc3F0U1cyc3YyUW1mME1pN2IyTWNDcFNjbTFFMTdINGFIQlFnd1U0TDFhdDZzVG1tZmdCMmtPRVp2TGhkRHRYam5lUDhjbmM4OGw4UWlkTEZDUGIyZFdJQUltMjJ3amFlT1VSY2Q3Q05ET1VJVTRBazM3TGFxbXpUYXY4aGdYaVkvVVpWWS9vUWluNzZjQzBiMG1EdUJtd3lxcHRkV29iWmxWWDBFbHhKSjFpQmxBVGZPOGwydnRHbTVmMTUzWWdFaW1OVFl6c21sVmo5cXNYQ1VQWkxnbTZHdmhlcEFyTi9Kai9XbEFiRnh0SEZtNndxdTViYjFRam02YVRYRkViRUhoSVNESTVKb2FPR0xuUEVuVmR3bEIxcEU4anBHRlpLMGRUbzUxZHNhblRJOWdEV2VBVmxHbFkrV25hb2Zka21pWFE5Zk4yWlU5QzlRNWFUOWlQTlNnbDVNcHlRSHR4L3lXSFdKTU9lVDVoazBFaW05N2N4VG8zVmJuQVBOVmR5SE44Zyt5cUNVK1pVRmhVMVArRTdZU3d3UDV5eHQ5RlJFRGxTakdKM2U2MGp2WUZoM1JNa1dtdk96RkU4K3YwZkFVcDBiSzh2RlR4Mm5QQWc2TlI4YXdOaDl0RkJkU3ZWVUVEMTNkRnNDT2tibVJYRXNRTG9odmU0L0w5TzUzU0VqeFNWdFJUVHRpREJwVndtLzB6OG9JVUo1RXorNWVsWWlVUFd4K21nZmZOaDd5cUpxVjFkaDA4WldvbVhpQjkwcjlYK1FQNnVHR3p3Z3BIYVdqUW1EbXZLc3B2YTAwY0RUNzNZY1hWZ1dPc09lbHREdlF3OVltU1dOT1lzd1FnQ3lvbkVDZz0mU28yMWJJdGNVTmFSanNrUlhpSlRWZllGQTBjPQ==; _b="AYfYZ+l4jd5M65FWgISue0hOWIiuVXgmNcykg/Pjx7UAzqIIvQGJTmsTBBgAIp2doPU="; cm_sub=allowed; ar_debug=1; _routing_id="e37187f2-d86d-4b8b-a644-8c2919354068"; sessionFunnelEventLogged=1')
+            )
             page = context.new_page()
 
             # 访问搜索页面
@@ -461,20 +461,44 @@ def down_imgs(imgs, proxy=None, name=None):
     return image_paths
 
 
+def tps(img_url, proxy=None, name=None, image_paths=None):
+    ua_list = [
+        'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/14.0.835.163 Safari/535.1',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3683.103 Safari/537.36Chrome 17.0',
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_0) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11',
+        'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:6.0) Gecko/20100101 Firefox/6.0Firefox 4.0.1',
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:2.0.1) Gecko/20100101 Firefox/4.0.1',
+        'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_8; en-us) AppleWebKit/534.50 (KHTML, like Gecko) Version/5.1 Safari/534.50',
+        'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-us) AppleWebKit/534.50 (KHTML, like Gecko) Version/5.1 Safari/534.50',
+        'Opera/9.80 (Windows NT 6.1; U; en) Presto/2.8.131 Version/11.11',
+    ]
+    headers = {
+        'Connection': 'close',
+        "User-Agent": random.choice(ua_list)
+    }
+    img_name = img_url.split('/')[-1]
+    r = get_response(img_url, headers, proxy)
+    time.sleep(1)
+    name_os = name.replace(" ", "")
+    os.makedirs(name_os, exist_ok=True)
+    img_path = os.path.abspath(f'{name_os}/{img_name}')  # 获取绝对路径
+    with open(img_path, 'wb') as f:
+        f.write(r.content)
+    print(f">> {img_name}下载图片成功")
+    if image_paths is not None:
+        image_paths.append(img_path)  # 将绝对路径添加到列表中
 
 
-
-def main(max_projects: int = 5, name: str = "old", cookies=None):
-    logger.info(f">> 任务详情爬取{max_projects}个{name}")
+def main():
     proxy = {
         "server": "http://10.7.100.40:9910"
     }
     # 第一步：抓取项目列表
-    projects, project_urls = scrape_behance_projects(max_projects=max_projects, proxy=proxy, name=name, cookies=cookies)
+    projects, project_urls = scrape_behance_projects(max_projects=1000, proxy=proxy, name="Cadillac")
     uid_list = inster_data(projects)
 
     if uid_list == []:
-        logger.info("没有新作品集需要下载")
+        print("没有新作品集需要下载")
         return
     # 使用参数化查询来避免SQL注入
     placeholders = ', '.join(['%s'] * len(uid_list))
@@ -483,10 +507,17 @@ def main(max_projects: int = 5, name: str = "old", cookies=None):
 
     """
     cursor.execute(sql, uid_list)  # 执行语句
-
+    # sql = f"""
+    # select    `detail_url`,`uid`,`title`  from portfolio where title='Cadillac' and is_pick=0 and platform='pinterest' limit 5;
+    #
+    # """
+    # cursor.execute(sql)  # 执行语句
     data_list = cursor.fetchall()  # 通过fetchall方法获得数据
 
     # 第二步：抓取项目详情和图片
     scrape_behance_details(data_list, proxy=proxy, name="cadillac")
-    logger.info("任务完成!")
 
+    print("任务完成!")
+
+
+main()
