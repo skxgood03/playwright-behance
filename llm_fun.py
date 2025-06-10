@@ -9,7 +9,7 @@ llm_cfg = {
     # 'api_key': os.getenv('DASHSCOPE_API_KEY'),
 
     # Use a custom endpoint compatible with OpenAI API:
-    'model_server': 'http://10.7.100.85:8000/v1',  # api_base
+    'model_server': '',  # api_base
     'api_key': 'EMPTY',
 
     # Other parameters:
@@ -34,7 +34,7 @@ tools = [
         "amap-maps": {
             "command": "npx",
             "args": ["-y", "@amap/amap-maps-mcp-server"],
-            "env": {"AMAP_MAPS_API_KEY": "5a1607e8cb92878c2c151fbc8da90ce5"
+            "env": {"AMAP_MAPS_API_KEY": ""
                     }
         }
     }
